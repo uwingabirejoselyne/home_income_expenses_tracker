@@ -1,6 +1,5 @@
 const router = require('express').Router();
-router.get('/',(req,res)=>{
-    res.send('hello world!!')
-})
+const addIncome = require('../controllers/incomeController')
+router.post('/',addIncome)
 
 module.exports = router;
