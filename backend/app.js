@@ -8,14 +8,13 @@ require('dotenv').config()
 
 const PORT = process.env.PORT
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors())
-app.use('/transaction',transactionRoute);
+app.use('/',transactionRoute);
 
-app.get('/',(req,res)=>{
-    res.send('hello world')
-    
-})
+
 const server = ()=>{
     db()
 app.listen(PORT,()=>{
