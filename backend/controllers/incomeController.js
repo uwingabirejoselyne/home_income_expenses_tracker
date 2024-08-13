@@ -1,6 +1,7 @@
 const Income = require('../models/incomeModel');
+const asyncHandler = require("express-async-handler");
 
-const addIncome = async(req,res)=>{
+const addIncome = asyncHandler(async (req, res) => {
     try {
         const newIncome = await Income.create(req.body);
         res.json(newIncome);
@@ -8,5 +9,5 @@ const addIncome = async(req,res)=>{
         throw new Error(error);
       }
  
-}
+})
 module.exports ={addIncome}
