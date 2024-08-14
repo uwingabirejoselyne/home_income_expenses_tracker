@@ -2,16 +2,29 @@ const Income = require('../models/incomeModel');
 const asyncHandler = require("express-async-handler");
 
 const addIncome = asyncHandler(async (req, res) => {
-    const {title,amount,date,category,description } = req.body
-    if(!title || !amount || !date || !category|| !description){
-        return res.status(400).json({message:'All fields are required'});
-    }
+    const { title, amount, date, category, description } = req.body
     try {
+        if (!title || !amount || !date || !category || !description) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+        if (amount <= 0 || !amount === 'number') {
+            return res.status(400).json({ message: 'amount must be positive' });
+        }
         const newIncome = await Income.create(req.body);
         res.status(201).json(newIncome);
-      } catch (error) {
+    } catch (error) {
         res.status(500).json({ message: 'Failed to create income', error: error.message });
-      }
- 
+    }
+
 })
-module.exports ={addIncome}
+
+const getIncomes = asyncHandler(async(req,res)=>{
+    try {
+        const getIncomes = Income.find().sort({createdAt:-1});
+        res.status(200).json(getIncomes)
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to get income', error: error.message });
+        
+    }
+})
+module.exports = { addIncome,getIncomes }
