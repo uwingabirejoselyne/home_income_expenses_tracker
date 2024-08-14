@@ -20,7 +20,7 @@ const addIncome = asyncHandler(async (req, res) => {
 
 const getIncomes = asyncHandler(async(req,res)=>{
     try {
-        const getIncomes = Income.find().sort({createdAt:-1});
+        const getIncomes = await Income.find().sort({createdAt:-1});
         res.status(200).json(getIncomes)
     } catch (error) {
         res.status(500).json({ message: 'Failed to get income', error: error.message });
