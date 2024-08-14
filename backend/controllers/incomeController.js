@@ -27,4 +27,15 @@ const getIncomes = asyncHandler(async(req,res)=>{
         
     }
 })
-module.exports = { addIncome,getIncomes }
+
+const deletedIncome = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const deleteIncome = await Income.findByIdAndDelete(id);
+      res.status(200).json({ message: 'Income deleted successfully', deletedIncome })
+    } catch (error) {
+      throw new Error(error);
+    }
+  })
+module.exports = { addIncome,getIncomes,deletedIncome }
