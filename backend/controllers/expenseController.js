@@ -28,4 +28,15 @@ const getExpense = asyncHandler(async(req,res)=>{
     }
 })
 
-module.exports ={addExpenses,getExpense}
+const deletedExpense = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const deleteExpense = await Expense.findByIdAndDelete(id);
+      res.status(200).json({ message: 'Expense deleted successfully', deleteExpense })
+    } catch (error) {
+      throw new Error(error);
+    }
+  })
+
+module.exports ={addExpenses,getExpense,deletedExpense}
