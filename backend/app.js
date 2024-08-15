@@ -4,6 +4,7 @@ const app = express()
 const bodyParser = require("body-parser");
 const db = require('./db/db');
 const transactionRoute = require('./routes/transactionRoute')
+const expensesRoute = require('./routes/expenseRoute')
 
 require('dotenv').config()
 
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors())
 app.use('/income',transactionRoute);
-
+app.use('/expenses',expensesRoute);
 
 const server = ()=>{
     db()

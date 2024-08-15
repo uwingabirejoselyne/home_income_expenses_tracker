@@ -12,7 +12,7 @@ const addExpenses = asyncHandler(async(req,res)=>{
             return res.status(400).json({ message: 'amount must be positive' });
         }
         const newExpense = await Expense.create(req.body);
-        res.status(201).json(newIncome);
+        res.status(201).json({message:'new exense created',newExpense});
     } catch (error) {
         res.status(500).json({ message: 'Failed to create expense', error: error.message });
     }
