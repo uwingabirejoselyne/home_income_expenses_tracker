@@ -16,7 +16,16 @@ const addExpenses = asyncHandler(async(req,res)=>{
     } catch (error) {
         res.status(500).json({ message: 'Failed to create expense', error: error.message });
     }
-
 })
 
-module.exports ={addExpenses}
+const getExpense = asyncHandler(async(req,res)=>{
+    try {
+        const getExpense = await Expense.find().sort({createdAt:-1});
+        res.status(200).json(getExpense)
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to get expense', error: error.message });
+        
+    }
+})
+
+module.exports ={addExpenses,getExpense}
