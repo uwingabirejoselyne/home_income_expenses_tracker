@@ -1,7 +1,11 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { UseWindowSize } from '../../utils/UseWindowSize';
 
 const Orb = () => {
+    const { width, height } = UseWindowSize();
+    console.log(width,height);
+    
   const moveOrb = keyframes`
     0% {
       transform: translate(0, 0);
