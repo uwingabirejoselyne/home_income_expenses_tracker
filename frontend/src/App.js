@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import avatar from './img/bg.png'; 
 import { MainLayout } from "./styles/Layout";
+import Orb from "./Components/Orb/Orb";
 
 function App() {
   return (
     <AppStyled bg={avatar}>
+      <Orb/>
       <MainLayout>
         <h1>Hello</h1>
       </MainLayout>
