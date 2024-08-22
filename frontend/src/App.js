@@ -12,6 +12,9 @@ function App() {
       <Orb/>
       <MainLayout>
         <Navigation active={active} setActive={setActive} />
+        <div className="main-content">
+          <h1>Hello</h1>
+        </div>
       </MainLayout>
     </AppStyled>
   );
@@ -20,7 +23,20 @@ function App() {
 const AppStyled = styled.div`
   height: 100vh;
   background-image: url(${props => props.bg});
-  position:relative
+  position:relative;
+
+  .main-content {
+    flex: 1;
+    background: rgba(252, 246, 249, 0.78); 
+    border: 3px solid #ffffff;
+    backdrop-filter: blur(4.5px);
+    border-radius: 32px;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 2rem;
+    h1{
+    }
+  }
 `;
 
 export default App;
