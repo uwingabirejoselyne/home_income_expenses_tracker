@@ -4,16 +4,37 @@ import bg from './img/bg.png';
 import { MainLayout } from "./styles/Layout";
 import Orb from "./Components/Orb/Orb";
 import Navigation from "./Components/Navigation/Navigation";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import Expenses from "./Components/Expenses/Expenses";
+import Income from "./Components/Incomes/Income";
+import { useGlobalContext } from "./Context/globalContext";
 
 function App() {
   const[active,setActive] = useState(1)
+  const global = useGlobalContext()
+  console.log(global);
+  
+  const displayData =() =>{
+    switch(active){
+      case 1:
+        return <Dashboard/>
+      case 2:
+        return <Dashboard/>
+      case 3:
+        return <Income/>
+      case 4:
+        return <Expenses/>
+      default:
+        return <Dashboard/> 
+    }
+  }
   return (
     <AppStyled bg={bg}>
       <Orb/>
       <MainLayout>
         <Navigation active={active} setActive={setActive} />
         <div className="main-content">
-          <h1>Hello</h1>
+          {displayData()}
         </div>
       </MainLayout>
     </AppStyled>
