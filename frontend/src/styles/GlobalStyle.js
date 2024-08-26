@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     --primary-color-light: rgba(34, 34, 96, 0.6);
     --primary-color-lighter: rgba(34, 34, 96, 0.4);
     --color-grey: #aaa;
+    --color-green:#008000;
     --primary-accent: #f56692;
     --primary-delete: #ff0000;
   }

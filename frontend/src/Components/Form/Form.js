@@ -16,18 +16,65 @@ const Form = () => {
 
     const handleInput = (e) => {
         const { name, value } = e.target;
-        setInputState((prevState) => ({
-            ...prevState,
+        setInputState((inputState) => ({
+            ...inputState,
             [name]: value
         }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addIncome(inputState);
+        const data = { 
+            ...inputState, 
+            amount: parseFloat(inputState.amount)  
+        };
+        addIncome(data);
     };
+    
 
-    const StyledForm = styled.form``;
+    const StyledForm = styled.form`
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+    input,textarea,select{
+    font-family:inherit;
+    font-size:inherit;
+    outline:none;
+    border:none;
+    padding:0.5rem 1rem;
+    border-radius:5px;
+    border:1px solid #fff;
+    resize:none;
+    box-shadow:0px 1px 15px rgba(0,0,0,0.06);
+    color:rgba(34,34,96,0.9);
+    &::placeholder{
+    color:rgba(34,34,96,0.4);
+    }
+    }
+    .input-control{
+    input{
+    width:100%;
+    }
+    }
+    .selects{
+    display:flex;
+    justify-content:flex-end;
+    select{
+    color:rgba(34,34,96,0.4);
+    &:focus,&:active{
+    color:rgba(34,34,96,0.4);
+    }
+    }
+    }
+    .submit-btn{
+    button{
+    box-shadow:0px 1px 15px rgba(0, 0, 0,0.96);
+    &:hover{
+    background:var(--color-green)!important;
+    }
+    }
+    }
+    `;
 
     return (
         <StyledForm onSubmit={handleSubmit}>
@@ -43,7 +90,7 @@ const Form = () => {
             </div>
             <div className="input-control">
                 <input
-                    type="text"
+                    type="number"
                     className="text"
                     value={amount}
                     name="amount"
@@ -77,6 +124,9 @@ const Form = () => {
                     <option value="youtube">YouTube</option>
                     <option value="other">Other</option>
                 </select>
+            </div>
+            <div className="input-control">
+                <textarea name="description" value={description} cols="30" rows="4" onChange={handleInput} id="">Description</textarea>
             </div>
             <div className="submit-btn">
                 <button type="submit">Add Income</button>
